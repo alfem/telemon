@@ -9,7 +9,7 @@ You will need:
 * telegram_bot https://pypi.python.org/pypi/python-telegram-bot/
 * pyaudio https://pypi.python.org/pypi/PyAudio
 * pydub https://pypi.python.org/pypi/pydub/
-* ffmpeg or avconv (from your favourite repository)
+* libav-tools or ffmpeg (from your favourite repository)
 
 
 # Use
