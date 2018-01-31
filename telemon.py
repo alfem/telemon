@@ -36,7 +36,7 @@ CHANNELS=CONF.getint("AUDIO","channels")
 RATE=CONF.getint("AUDIO","rate")
 ENDING_SILENCE=CONF.getint("AUDIO","ending_silence")
 DEBUG=CONF.getboolean("MAIN","debug")
-CHUNK_SIZE = 1024
+CHUNK_SIZE = 2048
 FORMAT = pyaudio.paInt16
 FRAME_MAX_VALUE = 2 ** 15 - 1
 NORMALIZE_MINUS_ONE_dB = 10 ** (-1.0 / 20)
@@ -82,7 +82,10 @@ def audiomon(conn):
                        conn.send(["Listening again"])
     
             if listening:
-                data_chunk = array('h', stream.read(CHUNK_SIZE))
+                try:
+                    data_chunk = array('h', stream.read(CHUNK_SIZE))
+                except IOError as e:
+                    data = '\x00'
 
                 silent = is_silent(data_chunk)
 
